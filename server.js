@@ -1,21 +1,46 @@
 ﻿var fs = require('fs');
-var url = require('url');
+var express = require('express');
 
-var server = require('http').createServer(function(req, res){
-  var path = url.parse(req.url).pathname;
-  if (path.indexOf('/public/') === 0) {
-    console.log('serving static: ', path);
-    fs.readFile(__dirname+path, function (err, data) {
-      var contentType = 'text/html';
-      if (path.indexOf('/public/js/') === 0) {
-        contentType = 'text/javascript';
-      }
-      res.writeHead(200, {'Content-Type': contentType});
-      res.end(data, 'utf-8');
-    });
-  }
+var app = express()
+  , http = require('http')
+  , server = http.createServer(app);
+
+server.listen(3000);
+
+// var app = express.createServer();
+var app = express();
+// Configuration
+// app.set('views', __dirname + '/views');
+// app.set('view engine', 'ejs');
+app.use('/media', express.static(__dirname + '/media'));
+app.use(express.static(__dirname + '/public'));
+
+// Routes
+
+app.get('/', function(req, res){
+  res.render('index', {locals: {
+    title: 'NowJS + Express Example'
+  }});
 });
-server.listen(9999);
+
+app.get('/chat', function(req, res){
+  res.render('chat', {locals: {
+    title: 'NowJS + Express Example'
+  }});
+});
+
+
+// console.log("Express server listening on port %d", app.address().port);
+app.listen(9999);
+
+// var server = require('http').createServer(function(req, response){
+//   fs.readFile(__dirname+'/public/client.html', function(err, data){
+//     response.writeHead(200, {'Content-Type':'text/html'});
+//     response.write(data);
+//     response.end();
+//   });
+// });
+// server.listen(9999);
 
 
 var nowjs = require("now");
