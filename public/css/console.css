@@ -8,7 +8,7 @@
 
 html  { height: 100%; background: #fff; }
 body { height: 100%; overflow: hidden; border: 0; margin: 0; padding: 0; font-family: "helvetica neue", arial, helvetica; width: 100%; overflow-x: hidden; }
-input, textarea { margin: 0; padding: 0; position: relative; font-size: 18px; -webkit-border-radius: 0; -webkit-appearance: none; } /* webkit-mobile adds rounded corners :( */
+input, textarea { margin: 0; padding: 0; position: relative; font-size: 18px; width: 100%; -webkit-border-radius: 0; -webkit-appearance: none; } /* webkit-mobile adds rounded corners :( */
 input { padding: 2px; width: auto}
 
 /*#console { position: absolute; left: 0; right: 0; width: 100%; bottom: 0; overflow: auto; border-bottom: 1px solid #5B5C5B; }*/
