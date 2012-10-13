@@ -1,10 +1,19 @@
 ﻿var fs = require('fs');
-var server = require('http').createServer(function(req, response){
-  fs.readFile(__dirname+'/public/client.html', function(err, data){
-    response.writeHead(200, {'Content-Type':'text/html'});
-    response.write(data);
-    response.end();
-  });
+var url = require('url');
+
+var server = require('http').createServer(function(req, res){
+  var path = url.parse(req.url).pathname;
+  if (path.indexOf('/public/') === 0) {
+    console.log('serving static: ', path);
+    fs.readFile(__dirname+path, function (err, data) {
+      var contentType = 'text/html';
+      if (path.indexOf('/public/js/') === 0) {
+        contentType = 'text/javascript';
+      }
+      res.writeHead(200, {'Content-Type': contentType});
+      res.end(data, 'utf-8');
+    });
+  }
 });
 server.listen(9999);
 
@@ -15,6 +24,8 @@ var everyone = nowjs.initialize(server);
 // Odd ones are clients
 // Even ones are developers
 var count = 0;
+
+
 
 nowjs.on('connect', function(){
   count++;

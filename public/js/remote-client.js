@@ -1,6 +1,10 @@
 (function ($, now) {
   $(document).ready(function(){
 
+    now.type = "client";
+
+    now.registerClient();
+
     now.receiveMessage = function(name, message, byAgent){
       byAgent = typeof byAgent !== undefined ? byAgent : "unknow";
       $("#messages").append("<br><b>[" + byAgent + "]" + name + "</b>: " + message);
