@@ -1,13 +1,10 @@
 (function ($, now) {
   $(document).ready(function(){
-
-    now.type = "client";
-
-    // now.receiveMessage = function(name, message, byAgent){
-    //   byAgent = typeof byAgent !== undefined ? byAgent : "unknow";
-    //   $("#messages").append("<br><b>[" + byAgent + "]" + name + "</b>: " + message);
-    // };
-
+    now.client = true;
+    now.executeCmd = function (cmd, devId) {
+      console.log('cmd: ', cmd, devId);
+      now.sendBackDev('responded back :' + now.core.clientId, devId);
+    };
 
     now.receiveMessage = function(name, message, byAgent){
       byAgent = typeof byAgent !== undefined ? byAgent : "unknow";
@@ -44,6 +41,10 @@
     now.name = prompt("What's your name?", "");
 
     $("#exec").focus();
+
+    now.ready(function () {
+      now.registerClient();
+    });
 
   });
 })(jQuery, now);

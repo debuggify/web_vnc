@@ -4,7 +4,8 @@
   "contributors": [],
   "dependencies": {
     "now": "*",
-    "express": "*"
+    "express": "*",
+    "underscore": "*"
   },
   "devDependencies": {
   },
