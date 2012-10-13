@@ -6,49 +6,28 @@ var app = express()
   , server = http.createServer(app);
 
 
-var app = express();
+var nowjs = require("now");
+var everyone = nowjs.initialize(server);
 // Configuration
 // app.set('views', __dirname + '/views');
 // app.set('view engine', 'ejs');
-app.use('/media', express.static(__dirname + '/media'));
+// app.use('/', express.static(__dirname + '/public'));
+app.use('/js', express.static(__dirname + '/public/js'));
 app.use(express.static(__dirname + '/public'));
 
 // Routes
 
-app.get('/', function(req, res){
-  res.render('index', {locals: {
-    title: 'NowJS + Express Example'
-  }});
-});
-
-app.get('/chat', function(req, res){
-  res.render('chat', {locals: {
-    title: 'NowJS + Express Example'
-  }});
-});
-
-
-// console.log("Express server listening on port %d", app.address().port);
-app.listen(9999);
-
-// var server = require('http').createServer(function(req, response){
-//   fs.readFile(__dirname+'/public/client.html', function(err, data){
-//     response.writeHead(200, {'Content-Type':'text/html'});
-//     response.write(data);
-//     response.end();
-//   });
+// app.get('/', function(req, res){
+//   res.render('index', {locals: {
+//     title: 'NowJS + Express Example'
+//   }});
 // });
-// server.listen(9999);
 
-
-var nowjs = require("now");
-var everyone = nowjs.initialize(server);
+server.listen(9999);
 
 // Odd ones are clients
 // Even ones are developers
 var count = 0;
-
-
 
 nowjs.on('connect', function(){
   count++;
