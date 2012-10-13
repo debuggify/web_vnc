@@ -1,16 +1,65 @@
-<html>
-  <head>
-    <script type="text/javascript" src="http://localhost:9999/nowjs/now.js"></script>
-    <script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Web VNC</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="/nowjs/now.js"></script>
 
-      now.ready(function(){
-        // "Hello World!" will print on server
-        now.logStuff("Hello World!");
-      });
+<script>
+$(document).ready(function(){
 
-    </script>
-  </head>
-  <body>
+  now.receiveMessage = function(name, message, byAgent){
+    byAgent = typeof byAgent !== undefined ? byAgent : "unknow"
+    $("#messages").append("<br><b>[" + byAgent + "]" + name + "</b>: " + message);
+  }
 
-  </body>
+  $("#send-all-developers").click(function(){
+    now.distributeMessage('developers', $("#text-input").val());
+    $("#text-input").val("");
+  });
+
+  $("#send-all-clients").click(function(){
+    now.distributeMessage('clients', $("#text-input").val());
+    $("#text-input").val("");
+  });
+
+  $("#send-all").click(function(){
+    now.distributeMessage('clients', $("#text-input").val());
+    now.distributeMessage('developers', $("#text-input").val());
+    $("#text-input").val("");
+  });
+
+  $(".change").click(function(){
+    now.changeRoom($(this).text());
+  });
+
+  $("#text-input").keypress(function (e) {
+    if (e.which && e.which === 13) {
+      $("#send-button").click();
+      return false;
+    }
+  });
+
+  now.name = prompt("What's your name?", "");
+
+  $("#text-input").focus();
+
+});
+</script>
+</head>
+
+<body>
+
+<div>
+  <a href="#" class="change selected">room 1</a> -
+  <a href="#" class="change">room 2</a> -
+  <a href="#" class="change">room 3</a>
+</div>
+<br>
+<div id="messages"><br>You're in room 1</div>
+<input type="text" id="text-input">
+<input type="button" value="Send All Developers" id="send-all-developers">
+<input type="button" value="Send All Clients" id="send-all-clients">
+<input type="button" value="Send All" id="send-all">
+</body>
 </html>
