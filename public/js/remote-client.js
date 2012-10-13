@@ -3,41 +3,47 @@
 
     now.type = "client";
 
+    // now.receiveMessage = function(name, message, byAgent){
+    //   byAgent = typeof byAgent !== undefined ? byAgent : "unknow";
+    //   $("#messages").append("<br><b>[" + byAgent + "]" + name + "</b>: " + message);
+    // };
+
+
     now.receiveMessage = function(name, message, byAgent){
       byAgent = typeof byAgent !== undefined ? byAgent : "unknow";
-      $("#messages").append("<br><b>[" + byAgent + "]" + name + "</b>: " + message);
+      $("#output").append('<li class="echo"><span class="gutter"></span><div>' + "<b>[" + byAgent + "][ " + name + " ]</b>" + message + '<a href="#" class="permalink" title="permalink">link</a></div></li>');
     };
 
     $("#send-all-developers").click(function(){
-      now.distributeMessage('developers', $("#text-input").val());
-      $("#text-input").val("");
+      now.distributeMessage('developers', $("#exec").val());
+      $("#exec").val("");
     });
 
     $("#send-all-clients").click(function(){
-      now.distributeMessage('clients', $("#text-input").val());
-      $("#text-input").val("");
+      now.distributeMessage('clients', $("#exec").val());
+      $("#exec").val("");
     });
 
     $("#send-all").click(function(){
-      now.distributeMessage('clients', $("#text-input").val());
-      now.distributeMessage('developers', $("#text-input").val());
-      $("#text-input").val("");
+      now.distributeMessage('clients', $("#exec").val());
+      now.distributeMessage('developers', $("#exec").val());
+      $("#exec").val("");
     });
 
     $(".change").click(function(){
       now.changeRoom($(this).text());
     });
 
-    $("#text-input").keypress(function (e) {
+    $("#exec").keypress(function (e) {
       if (e.which && e.which === 13) {
-        $("#send-button").click();
+        $("#send-all").click();
         return false;
       }
     });
 
     now.name = prompt("What's your name?", "");
 
-    $("#text-input").focus();
+    $("#exec").focus();
 
   });
 })(jQuery, now);

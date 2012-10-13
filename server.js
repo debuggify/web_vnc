@@ -12,7 +12,8 @@ var everyone = nowjs.initialize(server);
 // app.set('views', __dirname + '/views');
 // app.set('view engine', 'ejs');
 // app.use('/', express.static(__dirname + '/public'));
-app.use('/js', express.static(__dirname + '/public/js'));
+// app.use('/js', express.static(__dirname + '/public/js'));
+// app.use('/css', express.static(__dirname + '/public/css'));
 app.use(express.static(__dirname + '/public'));
 
 // Routes

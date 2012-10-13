@@ -2,23 +2,31 @@
 <html lang="en">
   <head>
     <title>Web VNC</title>
+    <link rel="stylesheet" href="/css/console.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/js/now.js"></script>
   </head>
 
   <body>
+    <form>
+      <textarea autofocus id="exec" spellcheck="false" autocapitalize="off" rows="1" autocorrect="off"></textarea>
 
-    <div>
-      <a href="#" class="change selected">room 1</a> -
-      <a href="#" class="change">room 2</a> -
-      <a href="#" class="change">room 3</a>
-    </div>
+      <input type="button" value="Send All Developers" id="send-all-developers">
+      <input type="button" value="Send All Clients" id="send-all-clients">
+      <input type="button" value="Send All" id="send-all">
+
+    </form>
+
     <br>
-    <div id="messages"><br>You're in room 1</div>
-    <input type="text" id="text-input">
-    <input type="button" value="Send All Developers" id="send-all-developers">
-    <input type="button" value="Send All Clients" id="send-all-clients">
-    <input type="button" value="Send All" id="send-all">
+    <br>
+
+    <div id="console">
+      <ul id="output"></ul>
+    </div>
+
     <script type="text/javascript" src="/js/remote-client.js"></script>
+    <script src="/js/prettify.packed.js"></script>
+    <!-- <script src="/js/EventSource.js"></script>
+    <script src="/js/console.js"></script> -->
   </body>
 </html>
