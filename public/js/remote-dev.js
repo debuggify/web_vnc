@@ -13,13 +13,12 @@
 
   $('#send').click(function () {
     console.log('send click');
-
+    now.onClients( $("#text-input").val());
   });
 
   $("#text-input").keypress(function (e) {
     if (e.which && e.which === 13) {
       $("#send").click();
-      now.onClients('sometihng');
       return false;
     }
   });
