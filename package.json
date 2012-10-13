@@ -1,0 +1,15 @@
+{
+  "name": "debuggify",
+  "version": "0.0.1",
+  "contributors": [],
+  "dependencies": {
+    "now": "*"
+  },
+  "devDependencies": {
+  },
+  "preferGlobal": "true",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "optionalDependencies": {}
+}
