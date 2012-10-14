@@ -14,7 +14,7 @@ nowjs = require('now');
       room = room || this.now.room;
       nowjs.getClient(devId, function () {
         if (this.now) {
-          this.now.clientResponse(msg);
+          this.now.clientResponse(msg, devId);
         }
       });
     }

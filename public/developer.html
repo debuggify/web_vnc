@@ -1,13 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <title>Web VNC</title>
+    <link rel="stylesheet" href="/css/console.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="/nowjs/now.js"></script>
   </head>
   <body>
 
-    <input type="text" id="text-input">
-    <input type="button" value="Send" id="send">
+    <form>
+      <textarea autofocus id="exec" spellcheck="false" autocapitalize="off" rows="1" autocorrect="off"></textarea>
+
+    </form>
+
+
+    <div id="console">
+      <ul id="output"></ul>
+    </div>
 
     <script type="text/javascript" src="/js/remote-dev.js"></script>
+    <script src="/js/prettify.packed.js"></script>
   </body>
 </html>

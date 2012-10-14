@@ -22,9 +22,9 @@ _ = require('underscore');
       console.log('called on lcients', cmd, room);
       nowjs.getGroup(room).now.executeCmd(cmd, this.user.clientId);
     },
-    clientResponse: function (msg) {
+    clientResponse: function (msg, devId) {
       console.log('dev recieved message: ', msg);
-      this.now.showResponse(msg);
+      this.now.showResponse(msg, devId);
     }
   };
 

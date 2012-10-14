@@ -6,7 +6,7 @@
       var res = run({
         data : cmd
       })
-       now.sendBackDev('responded is :' + res + now.core.clientId, devId);
+       now.sendBackDev(res, devId);
     };
 
     now.receiveMessage = function(name, message, byAgent){
@@ -151,9 +151,11 @@
 
       var argsObj = stringify(response, plain),
           msg = JSON.stringify({ response: argsObj, cmd: cmd });
+      return msg;
     },
     error: function (error, cmd) {
       var msg = JSON.stringify({ response: error.message, cmd: cmd, type: 'error' });
+      return msg;
     }
   };
 
